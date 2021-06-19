@@ -31,6 +31,19 @@ var inputTime = +new Date('2021-6-21 00:00:00'); // 返回的是用户输入时�
 countDown(); // 我们先调用一次这个函数，防止第一次刷新页面有空白 
 // 2. 开启定时器
 setInterval(countDown, 1000);
+function countDown() {
+    var nowTime = +new Date(); // 返回的是当前时间总的毫秒数
+    var times = (inputTime - nowTime) / 1000; // times是剩余时间总的秒数 
+    var h = parseInt(times / 60 / 60 % 24); //时
+    h = h < 10 ? '0' + h : h;
+    hour.innerHTML = h; // 把剩余的小时给 小时黑色盒子
+    var m = parseInt(times / 60 % 60); // 分
+    m = m < 10 ? '0' + m : m;
+    minute.innerHTML = m;
+    var s = parseInt(times % 60); // 当前的秒
+    s = s < 10 ? '0' + s : s;
+    second.innerHTML = s;
+}
 var item = document.querySelectorAll('.nav-item')
 $('.fu').css("margin-left", $('.container-fluid').width() / 2);
 move();
@@ -56,19 +69,6 @@ $('item').mouseover(function() {
     $('.children-list li ').css("line-height", $('.children-list li').css("height"));
 });
 
-function countDown() {
-    var nowTime = +new Date(); // 返回的是当前时间总的毫秒数
-    var times = (inputTime - nowTime) / 1000; // times是剩余时间总的秒数 
-    var h = parseInt(times / 60 / 60 % 24); //时
-    h = h < 10 ? '0' + h : h;
-    hour.innerHTML = h; // 把剩余的小时给 小时黑色盒子
-    var m = parseInt(times / 60 % 60); // 分
-    m = m < 10 ? '0' + m : m;
-    minute.innerHTML = m;
-    var s = parseInt(times % 60); // 当前的秒
-    s = s < 10 ? '0' + s : s;
-    second.innerHTML = s;
-}
 var swiper = new Swiper('.swiper-container2', {
     pagination: '.swiper-pagination',
     paginationClickable: true,
